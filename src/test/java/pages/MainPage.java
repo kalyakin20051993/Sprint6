@@ -2,6 +2,10 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 import java.util.List;
 
 public class MainPage {
@@ -88,6 +92,7 @@ public class MainPage {
 
     public String getAccordionTextByIndex(int index) {
         driver.findElement(questions.get(index)).click();
-        return driver.findElement(answers.get(index)).getText();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(answers.get(index))).getText();
     }
 }
