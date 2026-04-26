@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import java.util.List;
 
 public class MainPage {
     private WebDriver driver;
@@ -45,6 +46,28 @@ public class MainPage {
     // Ответ на "Я жизу за МКАДом, привезёте?"
     private By accordionEighthItemAnswer = By.xpath(".//div[@id='accordion__panel-7']/p");
 
+    private List<By> questions = List.of(
+            accordionFirstItem,
+            accordionSecondItem,
+            accordionThirdItem,
+            accordionFourthItem,
+            accordionFifthItem,
+            accordionSixthItem,
+            accordionSeventhItem,
+            accordionEighthItem
+    );
+
+    private List<By> answers = List.of(
+            accordionFirstItemAnswer,
+            accordionSecondItemAnswer,
+            accordionThirdItemAnswer,
+            accordionFourthItemAnswer,
+            accordionFifthItemAnswer,
+            accordionSixthItemAnswer,
+            accordionSeventhItemAnswer,
+            accordionEighthItemAnswer
+    );
+
     public MainPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -63,43 +86,8 @@ public class MainPage {
         driver.findElement(acceptCookie).click();
     }
 
-    public String getTextFromAccordionFirstItem() {
-        driver.findElement(accordionFirstItem).click();
-        return driver.findElement(accordionFirstItemAnswer).getText();
-    }
-
-    public String getTextFromAccordionSecondItem() {
-        driver.findElement(accordionSecondItem).click();
-        return driver.findElement(accordionSecondItemAnswer).getText();
-    }
-
-    public String getTextFromAccordionThirdItem() {
-        driver.findElement(accordionThirdItem).click();
-        return driver.findElement(accordionThirdItemAnswer).getText();
-    }
-
-    public String getTextFromAccordionFourthItem() {
-        driver.findElement(accordionFourthItem).click();
-        return driver.findElement(accordionFourthItemAnswer).getText();
-    }
-
-    public String getTextFromAccordionFifthItem() {
-        driver.findElement(accordionFifthItem).click();
-        return driver.findElement(accordionFifthItemAnswer).getText();
-    }
-
-    public String getTextFromAccordionSixthItem() {
-        driver.findElement(accordionSixthItem).click();
-        return driver.findElement(accordionSixthItemAnswer).getText();
-    }
-
-    public String getTextFromAccordionSeventhItem() {
-        driver.findElement(accordionSeventhItem).click();
-        return driver.findElement(accordionSeventhItemAnswer).getText();
-    }
-
-    public String getTextFromAccordionEighthItem() {
-        driver.findElement(accordionEighthItem).click();
-        return driver.findElement(accordionEighthItemAnswer).getText();
+    public String getAccordionTextByIndex(int index) {
+        driver.findElement(questions.get(index)).click();
+        return driver.findElement(answers.get(index)).getText();
     }
 }
